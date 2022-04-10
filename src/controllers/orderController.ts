@@ -1,8 +1,7 @@
-import {OrderEntity} from '../entities/orderEntity';
 import express from 'express';
 import {ErrorHandler} from '../middlewares/errorHandler';
 import {ErrorCode, ErrorMsg} from '../models/apiResponse';
-import {IOrder, OrderStatus} from '../models/order.model';
+import {IOrder} from '../models/order.model';
 import {OrderValidator} from '../validators/orderValidator';
 import {OrderService} from '../services/orderService';
 

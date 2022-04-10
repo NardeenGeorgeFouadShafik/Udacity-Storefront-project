@@ -4,7 +4,6 @@ import { JsonWebTokenHelper } from '../../helpers/jsonWebToken';
 import { ErrorMsg } from '../../models/apiResponse';
 
 const token: string = JsonWebTokenHelper.generateJWT(1, 1);
-const tokenUser3: string = JsonWebTokenHelper.generateJWT(3, 2);
 
 describe('Test user endpoint responses', () => {
     it('gets all users api endpoint_Should return list of users', async () => {
