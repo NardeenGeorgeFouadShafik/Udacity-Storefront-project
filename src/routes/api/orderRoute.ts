@@ -6,7 +6,7 @@ import { UserRole } from '../../models/user.model';
 
 export const OrderRoute: Router = Router();
 
-OrderRoute.get('/', Authentication.validateAuthToken, async (req: Request, res: Response) => {
+OrderRoute.get('/list', Authentication.validateAuthToken, async (req: Request, res: Response) => {
     return await OrderController.getOrdersByUserId(req, res);
 });
 

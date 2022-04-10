@@ -9,7 +9,7 @@ const tokenUser: string = JsonWebTokenHelper.generateJWT(1, 1);
 describe('Test order endpoint responses', () => {
 
     it('gets all orders api endpoint by user_Should return list of orders', async () => {
-        const res = await supertest(server).get('/api/order').set('Authorization', `Bearer ${tokenUser}`);
+        const res = await supertest(server).get('/api/order/list').set('Authorization', `Bearer ${tokenUser}`);
         expect(res.status).toBe(200);
         expect(res.body).toEqual([
                 {
