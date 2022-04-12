@@ -29,6 +29,9 @@ export enum ErrorMsg {
     Order_InvalidProductStatus = 'Order_InvalidProductStatus',
     Order_UserIdNotExist = 'Order_UserIdNotExist',
     Order_ProductIdNotExist = 'Order_ProductIdNotExist',
+    Order_MissingBranch = 'Order_MissingBranch',
+    Order_InvalidBranch = 'Order_InvalidBranch',
+    Order_OrderIdNotExist = 'Order_OrderIdNotExist',
 }
 
 export enum ErrorCode {

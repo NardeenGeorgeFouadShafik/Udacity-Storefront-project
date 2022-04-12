@@ -1,12 +1,7 @@
-CREATE TYPE status AS ENUM ('requested','inProgress', 'delivered');
+CREATE TYPE branch AS ENUM ('Alexandria','cairo', 'USA');
 
 CREATE TABLE orders(
     id SERIAL PRIMARY KEY,
-    product_id INTEGER,
-    quantity INTEGER DEFAULT 1,
-    user_id INTEGER,
-    product_status status NOT NULL,
-
-    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE
+    date DATE,
+    branch_order branch NOT NULL
 );

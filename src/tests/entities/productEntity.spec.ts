@@ -22,71 +22,99 @@ describe('Product Entity', () => {
         expect(ProductEntity.deleteProduct).toBeDefined();
     });
     it('should create a product using createProduct method', async () => {
-        const result: IProduct = await ProductEntity.createProduct({
-            name: 'iPhone',
-            price: '645',
-            category: 'phone',
-        });
-        expect(result).toEqual({
-            id: 2,
-            name: 'iPhone',
-            price: '645',
-            category: 'phone',
-        });
-    });
-    it('should return a list of products using getProducts', async () => {
-        const result: IProduct[] = await ProductEntity.getProducts();
-        expect(result[1]).toEqual({
-            id: 2,
-            name: 'iPhone',
-            price: '645',
-            category: 'phone',
-        });
-    });
-
-    it('should return the correct product using getProductById', async () => {
-        const result: IProduct = await ProductEntity.getProductById(2);
-        expect(result).toEqual({
-            id: 2,
-            name: 'iPhone',
-            price: '645',
-            category: 'phone',
-        });
-    });
-    it('should return the correct product using getProductByCategory', async () => {
-        const result: IProduct[] = await ProductEntity.getProductByCategory('phone');
-        expect(result).toEqual([
-            {
+        try {
+            const result: IProduct = await ProductEntity.createProduct({
+                name: 'iPhone',
+                price: '645',
+                category: 'phone',
+            });
+            expect(result).toEqual({
                 id: 2,
                 name: 'iPhone',
                 price: '645',
                 category: 'phone',
-            },
-        ]);
+            });
+        } catch (e) {
+            throw new Error('the error is: ' + e);
+        }
     });
+
+    it('should return a list of products using getProducts', async () => {
+        try {
+            const result: IProduct[] = await ProductEntity.getProducts();
+            expect(result[1]).toEqual({
+                id: 2,
+                name: 'iPhone',
+                price: '645',
+                category: 'phone',
+            });
+        } catch (e) {
+            throw new Error('the error is: ' + e);
+        }
+    });
+
+    it('should return the correct product using getProductById', async () => {
+        try {
+            const result: IProduct = await ProductEntity.getProductById(2);
+            expect(result).toEqual({
+                id: 2,
+                name: 'iPhone',
+                price: '645',
+                category: 'phone',
+            });
+        } catch (e) {
+            throw new Error('the error is: ' + e);
+        }
+    });
+
+    it('should return the correct product using getProductByCategory', async () => {
+        try {
+            const result: IProduct[] = await ProductEntity.getProductByCategory('phone');
+            expect(result).toEqual([
+                {
+                    id: 2,
+                    name: 'iPhone',
+                    price: '645',
+                    category: 'phone',
+                },
+            ]);
+        } catch (e) {
+            throw new Error('the error is: ' + e);
+        }
+    });
+
     it('should return the  product using updateProduct', async () => {
-        const result: IProduct = await ProductEntity.updateProduct(
-            {
+        try {
+            const result: IProduct = await ProductEntity.updateProduct(
+                {
+                    name: 'samsung',
+                    price: '1000',
+                    category: 'phone',
+                },
+                2,
+            );
+            expect(result).toEqual({
+                id: 2,
                 name: 'samsung',
                 price: '1000',
                 category: 'phone',
-            },
-            2,
-        );
-        expect(result).toEqual({
-            id: 2,
-            name: 'samsung',
-            price: '1000',
-            category: 'phone',
-        });
+            });
+        } catch (e) {
+            throw new Error('the error is: ' + e);
+        }
     });
+
     it('should delete the correct product using deleteProduct', async () => {
-        const result: IProduct = await ProductEntity.deleteProduct(2);
-        expect(result).toEqual({
-            id: 2,
-            name: 'samsung',
-            price: '1000',
-            category: 'phone',
-        });
+        try {
+            const result: IProduct = await ProductEntity.deleteProduct(2);
+            expect(result).toEqual({
+                id: 2,
+                name: 'samsung',
+                price: '1000',
+                category: 'phone',
+            });
+        } catch (e) {
+            throw new Error('the error is: ' + e);
+        }
     });
 });

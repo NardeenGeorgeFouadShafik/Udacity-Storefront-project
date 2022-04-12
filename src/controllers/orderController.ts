@@ -1,13 +1,12 @@
 import express from 'express';
-import {ErrorHandler} from '../middlewares/errorHandler';
-import {ErrorCode, ErrorMsg} from '../models/apiResponse';
-import {IOrder} from '../models/order.model';
-import {OrderValidator} from '../validators/orderValidator';
-import {OrderService} from '../services/orderService';
+import { ErrorHandler } from '../middlewares/errorHandler';
+import { ErrorCode, ErrorMsg } from '../models/apiResponse';
+import { IOrder_Product } from '../models/order.model';
+import { OrderValidator } from '../validators/orderValidator';
+import { OrderService } from '../services/orderService';
 
 export class OrderController {
-    constructor() {
-    }
+    constructor() {}
 
     public static async getOrdersByUserId(req: express.Request, res: express.Response): Promise<express.Response> {
         try {
@@ -47,7 +46,7 @@ export class OrderController {
 
     public static async createOrder(req: express.Request, res: express.Response): Promise<express.Response> {
         try {
-            const order: IOrder = OrderValidator.validateOrder(req, res);
+            const order: IOrder_Product = OrderValidator.validateOrder(req, res);
             return Promise.resolve(res.json(await OrderService.createOrder(order)));
         } catch (e: any) {
             return ErrorHandler.sendCorrectError(res, e.errorCode, e.errorMessage);
@@ -57,7 +56,12 @@ export class OrderController {
     public static async updateOrderStatus(req: express.Request, res: express.Response): Promise<express.Response> {
         try {
             return Promise.resolve(
-                res.json(await OrderService.updateOrderStatus(parseInt(req.query.orderId as string), req.query.status as string))
+                res.json(
+                    await OrderService.updateOrderStatus(
+                        parseInt(req.query.orderId as string),
+                        req.query.status as string,
+                    ),
+                ),
             );
         } catch (e: any) {
             return ErrorHandler.sendCorrectError(res, e.errorCode, e.errorMessage);

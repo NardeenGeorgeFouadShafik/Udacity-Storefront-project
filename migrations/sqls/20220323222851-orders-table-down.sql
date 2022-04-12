@@ -1,3 +1,3 @@
 DROP TABLE orders;
 
-DROP TYPE status;
+DROP TYPE branch;

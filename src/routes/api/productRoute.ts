@@ -6,22 +6,34 @@ import { Authentication } from '../../middlewares/authenication';
 
 export const productRoute: Router = Router();
 
-productRoute.get('/list', async (req: Request, res: Response) => {
-    return await ProductController.getAllProducts(res);
-});
+productRoute.get(
+    '/list',
+    Authentication.validateAuthToken,
+    async (req: Request, res: Response): Promise<Response<any, Record<string, any>>> => {
+        return await ProductController.getAllProducts(res);
+    },
+);
 
-productRoute.get('/:id', async (req: Request, res: Response) => {
-    return await ProductController.getProductById(req, res);
-});
+productRoute.get(
+    '/:id',
+    Authentication.validateAuthToken,
+    async (req: Request, res: Response): Promise<Response<any, Record<string, any>>> => {
+        return await ProductController.getProductById(req, res);
+    },
+);
 
-productRoute.get('/category/:category', async (req: Request, res: Response) => {
-    return await ProductController.getProductByaCategory(req, res);
-});
+productRoute.get(
+    '/category/:category',
+    Authentication.validateAuthToken,
+    async (req: Request, res: Response): Promise<Response<any, Record<string, any>>> => {
+        return await ProductController.getProductByaCategory(req, res);
+    },
+);
 
 productRoute.post(
     '/',
     [Authentication.validateAuthToken, Authorization.permit([UserRole.admin])],
-    async (req: Request, res: Response) => {
+    async (req: Request, res: Response): Promise<Response<any, Record<string, any>>> => {
         return await ProductController.createProduct(req, res);
     },
 );
@@ -29,7 +41,7 @@ productRoute.post(
 productRoute.put(
     '/:id',
     [Authentication.validateAuthToken, Authorization.permit([UserRole.admin])],
-    async (req: Request, res: Response) => {
+    async (req: Request, res: Response): Promise<Response<any, Record<string, any>>> => {
         return await ProductController.updateProduct(req, res);
     },
 );
@@ -37,7 +49,7 @@ productRoute.put(
 productRoute.delete(
     '/:id',
     [Authentication.validateAuthToken, Authorization.permit([UserRole.admin])],
-    async (req: Request, res: Response) => {
+    async (req: Request, res: Response): Promise<Response<any, Record<string, any>>> => {
         return await ProductController.deleteProductById(req, res);
     },
 );
