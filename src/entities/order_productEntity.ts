@@ -66,7 +66,6 @@ export class OrderEntity {
             const result = await conn.query(sql, [status, orderId]);
             conn.release();
             return result.rows[0];
-
         } catch (err) {
             throw new Error(`Could not update order status. Error: ${err}`);
         }
